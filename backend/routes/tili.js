@@ -13,7 +13,7 @@ router.get('/',function(request,response){
     })
 });
 
-router.get('/:id',
+router.get('/',
     function (request, response) {
         tili.getById(request.params.id, function (err, dbResult) {
             if (err) {
