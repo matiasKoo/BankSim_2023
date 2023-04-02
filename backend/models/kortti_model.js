@@ -10,7 +10,7 @@ const kortti = {
   add: function(kortti, callback) {
     return db.query(
       'insert into kortti (asiakas_idasiakas,korttinumero,PIN,luottoraja,tili_idtili) values(?,?,?,?,?)',
-      [kortti.idasiakas, kortti.korttinumero, kortti.PIN, kortti.luottoraja, kortti.idtili],
+      [kortti.asiakas_idasiakas, kortti.korttinumero, kortti.PIN, kortti.luottoraja, kortti.tili_idtili],
       callback
     );
   },
@@ -20,7 +20,7 @@ const kortti = {
   update: function(id, kortti, callback) {
     return db.query(
       'update kortti set asiakas_idasiakas=?, korttinumero=?, PIN=?, luottoraja=?, tili_idtili=? where idkortti=?',
-      [kortti.idasiakas, kortti.korttinumero, kortti.PIN, kortti.luottoraja, kortti.idtili, id],
+      [kortti.asiakas_idasiakas, kortti.korttinumero, kortti.PIN, kortti.luottoraja, kortti.tili_idtili, id],
       callback
     );
   }
