@@ -25,6 +25,17 @@ router.get('/:id',
         })
     });
 
+    router.get('/1/:korttinumero',
+    function (request, response) {
+        kortti.getByCardNumber(request.params.korttinumero, function (err, dbResult) {
+            if (err) {
+                response.json(err);
+            } else {
+                response.json(dbResult);
+            }
+        })
+    });
+
 
 router.post('/', 
 function(request, response) {
