@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 
 var indexRouter = require('./routes/index');
@@ -13,6 +14,7 @@ var loginRouter = require('./routes/login');
 
 
 var app = express();
+dotenv.config();
 
 app.use(logger('dev'));
 app.use(express.json());

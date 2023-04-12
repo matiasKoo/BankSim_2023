@@ -10,6 +10,9 @@ const kortti = {
   getById: function(id, callback) {
     return db.query('select * from kortti where idkortti=?', [id], callback);
   },
+  getByCardNumber: function(korttinumero, callback) {
+    return db.query('select * from kortti where korttinumero=?', [korttinumero], callback);
+  },
   add: function(kortti, callback) {
     bcrypt.hash(kortti.PIN, saltRounds, function(err, hash) {
       return db.query(
