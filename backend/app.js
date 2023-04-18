@@ -11,7 +11,7 @@ var tiliRouter = require('./routes/tili');
 var asiakasRouter = require('./routes/asiakas');
 var korttiRouter = require('./routes/kortti');
 var loginRouter = require('./routes/login');
-
+var tilitapahtumatRouter = require('./routes/tilitapahtumat');
 
 var app = express();
 dotenv.config();
@@ -33,6 +33,7 @@ app.use(authenticateToken); //Tämä middlewarena estää alemmat routet ilman o
 app.use('/tili', tiliRouter);
 app.use('/asiakas', asiakasRouter);
 app.use('/kortti', korttiRouter);
+app.use('/tilitapahtumat', tilitapahtumatRouter);
 
 //Pekan esimerkistä funktio https://peatutor.com/express/Examples/webtoken.php
 //Autentikoi siis saamansa tokenin, käytetään middlewarena
