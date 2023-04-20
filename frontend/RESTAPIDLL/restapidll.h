@@ -16,7 +16,9 @@ class RESTAPIDLL_EXPORT RESTAPIDLL: public QObject
 public:
     RESTAPIDLL(QObject * parent = nullptr);
     void Login();
-    void GetCardInfo();
+    void getCardInfo();
+    void getCustomerInfo();
+    void getTransactions();
     void getSaldo();
     void nosta20();
     void nosta40();
@@ -27,16 +29,24 @@ private slots:
     void receiveCardNumber(QString);
     void receivePinNumber(QString);
     void loginSlot(QNetworkReply * reply);
-    void getByCardInfoSlot(QNetworkReply * reply);
+    void getCardInfoSlot(QNetworkReply * reply);
+    void getCustomerInfoSlot(QNetworkReply * reply);
+    void getTransactionsSlot(QNetworkReply * reply);
     void getSaldoSlot(QNetworkReply * reply);
     void nostaSlot(QNetworkReply * reply);
 
+signals:
+    void sendSaldo(QString);
+    void sendTransactions(QStringList);
+    void sendError(QString);
+
 private:
-    QString cardNumber, pinNumber, idtili, idasiakas, saldo;
+    QString cardNumber, pinNumber, idtili, idasiakas, saldo, fname, lname, henkilotunnus, luottoraja, tilitapahtumat;
     QNetworkAccessManager * accessManager;
     QNetworkReply * reply;
     QByteArray response_data;
     QByteArray token;
+    QStringList list;
 };
 
 
