@@ -24,6 +24,16 @@ router.get('/:id',
         })
     });
 
+router.get('/:id/saldo',
+    function (request, response) {
+        tili.getSaldo(request.params.id, function (err, dbResult) {
+            if (err) {
+                response.json(err);
+            } else {
+                response.json(dbResult[0]);
+            }
+        })
+    });
 
 router.post('/', 
 function(request, response) {
@@ -60,5 +70,48 @@ function(request, response) {
   });
 });
 
+router.put('/:id/20', 
+function(request, response) {
+  tili.nosta20(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult.affectedRows);
+    }
+  });
+});
+
+router.put('/:id/40', 
+function(request, response) {
+  tili.nosta40(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult.affectedRows);
+    }
+  });
+});
+
+router.put('/:id/50', 
+function(request, response) {
+  tili.nosta50(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult.affectedRows);
+    }
+  });
+});
+
+router.put('/:id/100', 
+function(request, response) {
+  tili.nosta100(request.params.id, request.body, function(err, dbResult) {
+    if (err) {
+      response.json(err);
+    } else {
+      response.json(dbResult.affectedRows);
+    }
+  });
+});
 
 module.exports=router;

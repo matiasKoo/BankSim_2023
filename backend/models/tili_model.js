@@ -8,6 +8,9 @@ const tili = {
   getById: function(id, callback) {
     return db.query('select * from tili where idtili=?', [id], callback);
   },
+  getSaldo: function(id, callback) {
+    return db.query('select saldo from tili where idtili=?', [id], callback);
+  },
   add: function(tili, callback) {
     return db.query(
       'insert into tili (saldo, tilinumero, asiakas_idasiakas) values(?,?,?)',

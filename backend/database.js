@@ -1,8 +1,8 @@
-const mysql = require('mysql');
-const connection = mysql.createPool({
-  host: '127.0.0.1',
-  user: '', //täytä oma
-  password: '', //täytä oma
-  database: 'pankkiautomaattidb'
-});
+const mysql = require('mysql2');
+const dotenv = require('dotenv');
+
+dotenv.config();
+
+const connection = mysql.createPool(process.env.SQL_SERVER);
+
 module.exports = connection;
