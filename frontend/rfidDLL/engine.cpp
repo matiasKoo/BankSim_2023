@@ -8,10 +8,13 @@ engine::engine(QObject * parent) : QObject(parent)
 
     serialPort = new QSerialPort(this);
 
+    serialPortInfo = QSerialPortInfo::availablePorts();
+}
+
+void engine::openSerialPort()
+{
     connect(serialPort, SIGNAL(readyRead()),
             this, SLOT(readyReadHandler()));
-
-    serialPortInfo = QSerialPortInfo::availablePorts();
 
     foreach(const auto tempSerialInfo, serialPortInfo){
 
@@ -20,7 +23,7 @@ engine::engine(QObject * parent) : QObject(parent)
         QString serialNumber = "OL4E78E0053ECC3";
 
         if (tempSerialInfo.serialNumber() == serialNumber){
-            qDebug()<<"löysin oikean laitteen";
+            qDebug()<<"Laite löydetty";
 
             serialPort->close();
             serialPort->setPortName(tempSerialInfo.portName());
@@ -41,13 +44,6 @@ engine::engine(QObject * parent) : QObject(parent)
     }
 }
 
-QString engine::fetchCardNumber()
-{
-    QString str = cardString;
-    cardString = "";
-    return str;
-}
-
 void engine::readyReadHandler()
 {
     cardString = "";
@@ -57,5 +53,5 @@ void engine::readyReadHandler()
     cardString.remove(0,2);
     cardString.remove(11,15);
     qDebug()<<cardString;
-    emit cardNumberToInterface();
+    emit cardNumberToInterface(cardString);
 }

@@ -1,4 +1,5 @@
 const db = require('../database');
+const tilitapahtumat = require('./tilitapahtumat_model');
 
 const tili = {
   getAll: function(callback) {
@@ -29,28 +30,28 @@ const tili = {
   },
   nosta20: function(id, tili, callback) {
     return db.query(
-      'update tili set saldo=greatest(0,saldo-20) where idtili=?',
+      'call NostaRahaa(?,20)',
       [id],
       callback
     );
   },
   nosta40: function(id, tili, callback) {
     return db.query(
-      'update tili set saldo=greatest(0,saldo-40) where idtili=?',
+      'call NostaRahaa(?,40)',
       [id],
       callback
     );
   },
   nosta50: function(id, tili, callback) {
     return db.query(
-      'update tili set saldo=greatest(0,saldo-50) where idtili=?',
+      'call NostaRahaa(?,50)',
       [id],
       callback
     );
   },
   nosta100: function(id, tili, callback) {
     return db.query(
-      'update tili set saldo=greatest(0,saldo-100) where idtili=?',
+      'call NostaRahaa(?,100)',
       [id],
       callback
     );

@@ -18,7 +18,7 @@ private:
     engine *pEngine;
 
 public slots:
-    void readyReadHandler();
+    void readyReadHandler(QString s);
 };
 
 #endif // RFIDINTERFACE_H

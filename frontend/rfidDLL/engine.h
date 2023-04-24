@@ -13,12 +13,13 @@ class engine : public QObject
 
 public:
     engine(QObject * parent = nullptr);
-    QString fetchCardNumber();
+
+    void openSerialPort();
 
 public slots:
     void readyReadHandler();
 signals:
-    void cardNumberToInterface();
+    void cardNumberToInterface(QString s);
 private:
     QSerialPort *serialPort;
     QList<QSerialPortInfo> serialPortInfo;

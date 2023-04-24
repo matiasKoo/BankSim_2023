@@ -10,8 +10,10 @@ rfidInterface::rfidInterface(QObject * parent) : QObject(parent)
 
     pEngine = new engine(this);
 
-    connect(pEngine, SIGNAL(cardNumberToInterface()),
-             this, SLOT(readyReadHandler()));
+    connect(pEngine, SIGNAL(cardNumberToInterface(QString)),
+             this, SLOT(readyReadHandler(QString)));
+
+    pEngine->openSerialPort();
 
 }
 
@@ -20,8 +22,7 @@ rfidInterface::~rfidInterface()
 
 }
 
-void rfidInterface::readyReadHandler()
+void rfidInterface::readyReadHandler(QString s)
 {
-    qDebug()<<"Interfacen readHandler";
-    qDebug()<<pEngine->fetchCardNumber();
+    qDebug()<<"Interfacen readHandler: "<<s;
 }
