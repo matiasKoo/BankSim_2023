@@ -38,7 +38,8 @@ private slots:
 signals:
     void sendSaldo(QString);
     void sendTransactions(QStringList);
-    void sendError(QString);
+    void sendLogin(QString);
+    void sendNosto(QString);
 
 private:
     QString cardNumber, pinNumber, idtili, idasiakas, saldo, fname, lname, henkilotunnus, luottoraja, tilitapahtumat;

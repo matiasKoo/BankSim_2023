@@ -27,6 +27,7 @@ void RESTAPIDLL::loginSlot(QNetworkReply *reply)
     if(QString::compare(response_data, "false")!=0)
     {
         qDebug()<<"Login OK";
+        emit sendLogin("true");
         token = "Bearer "+response_data;
         qDebug()<<token;
 
@@ -38,7 +39,7 @@ void RESTAPIDLL::loginSlot(QNetworkReply *reply)
     else
     {
         qDebug()<<"Login FAILED";
-        emit sendError("false");
+        emit sendLogin("false");
 
         reply->deleteLater();
         accessManager->deleteLater();
@@ -129,14 +130,14 @@ void RESTAPIDLL::nostaSlot(QNetworkReply *reply)
     if(QString::compare(response_data, "0")!=0 && QString::compare(response_data, "Unauthorized")!=0)
     {
         qDebug()<<"Nosto successful";
-
+        emit sendNosto("1");
         reply->deleteLater();
         accessManager->deleteLater();
     }
     else
     {
         qDebug()<<"Nosto failed";
-        emit sendError("0");
+        emit sendNosto("0");
 
         reply->deleteLater();
         accessManager->deleteLater();

@@ -1,5 +1,5 @@
 backend/node_modules/
 frontend/build/
-frontend/RESTAPIDLL/build
-frontend/*.user
-frontend/build-rfidInterface-Desktop_Qt_5_15_2_MinGW_32_bit-Debug
+frontend/*/build
+frontend/*.user 
+frontend/*/*.user 

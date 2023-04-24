@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "pinuiDLL_global.h"
+#include <QDebug>
 
 namespace Ui {
 class pin_dialog;
