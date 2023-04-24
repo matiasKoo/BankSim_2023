@@ -1,4 +1,5 @@
 backend/node_modules/
 frontend/build/
-frontend/RESTAPIDLL/build
+frontend/*/build
 frontend/*.user 
+frontend/*/*.user 

@@ -60,7 +60,7 @@ void pin_dialog::clickNumberHandler()
 {
     QPushButton * button = qobject_cast<QPushButton*>(sender());
     QString num = button->objectName();
-    num = num.last(1);
+    num =  num.remove(0,1);
     pin += num;
     qDebug()<<"Qstring pin = "<<pin;
     ui->lineEdit->insert("*");
