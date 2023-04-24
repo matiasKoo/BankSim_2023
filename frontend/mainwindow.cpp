@@ -10,12 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
     RestDLL = new RESTAPIDLL(this);
     rfid = new rfidInterface(this);
 
-
+    // rest login tiedot lähetys
     connect(this,SIGNAL(pinNum(QString)),
             RestDLL,SLOT(receivePinNumber(QString)));
 
     connect(this,SIGNAL(cardNum(QString)),
             RestDLL,SLOT(receiveCardNumber(QString)));
+
 
     connect(ui->pushButton,SIGNAL(clicked(bool)),
             this,SLOT(clickhandler()));
@@ -26,8 +27,17 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->testi,SIGNAL(clicked(bool)),
             this,SLOT(testi()));
 
+    // navigation
+
     connect(ui->goToNostaPage,SIGNAL(clicked(bool)),
             this,SLOT(nostaPageHandler()));
+    connect(ui->goToTiliTapahtumatPage,SIGNAL(clicked(bool)),
+            this,SLOT(tiliTapahtumatPageHandler()));
+    connect(ui->menuButton1,SIGNAL(clicked(bool)),
+            this,SLOT(menuPageHandler()));
+    connect(ui->menuButton2,SIGNAL(clicked(bool)),
+            this,SLOT(menuPageHandler()));
+
 
     //nosto connections
     connect(ui->nosta20,SIGNAL(clicked(bool)),
@@ -48,6 +58,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(RestDLL,SIGNAL(sendNosto(QString)),
             this,SLOT(nostoReceiver(QString)));
+
+    //connection korttinumeron vastaan otolle
+
+    // tänne readyread??
     state = 1;
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -63,7 +77,7 @@ void MainWindow::clickhandler()
     emit cardNum(ui->cardNumLineEdit->text());
     pinUI->displayText("Syötä PIN");
     state = 2;
-    pinUI->show();
+    pinUI->exec();
 }
 
 void MainWindow::pinSgnalHandler(short pin)
@@ -107,6 +121,17 @@ void MainWindow::nostaPageHandler()
     RestDLL->getSaldo();
 }
 
+void MainWindow::tiliTapahtumatPageHandler()
+{
+    ui->stackedWidget->setCurrentIndex(3);
+    //hae tapahtumat listaan
+}
+
+void MainWindow::menuPageHandler()
+{
+    ui->stackedWidget->setCurrentIndex(1);
+}
+
 
 void MainWindow::testi()
 {
@@ -114,13 +139,14 @@ void MainWindow::testi()
     RestDLL->getSaldo();
 }
 
-void MainWindow::cardReceiver(QString response)
-{
-    if(state == 1 && response == "1"){
-        emit cardNum(response);         // response may need modification
+void MainWindow::cardNumReceiver(QString responce)
+{   // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
+    if(state == 1){
+        qDebug()<<"EXE: rfid korttinumero saatu: "<<responce;
+        emit cardNum(responce);
         state = 2;
         pinUI->displayText("Syötä PIN");
-        pinUI->show();
+        pinUI->exec();
     }
 }
 
@@ -131,7 +157,7 @@ void MainWindow::loginReceiver(QString response)
         ui->stackedWidget->setCurrentIndex(1);
     }else{
         pinUI->displayText(QString::number(3 - pinAttempts) + " yritystä jäljellä");
-        pinUI->show();
+        pinUI->exec();
     }
 
 
@@ -139,8 +165,8 @@ void MainWindow::loginReceiver(QString response)
 
 void MainWindow::nostoReceiver(QString responce)
 {
-    qDebug()<<"get saldo";
-    RestDLL->getSaldo();
+    qDebug()<<"get saldo"<<responce;
+    RestDLL->getSaldo(); // restdll ei lähetä pyyntöä serverille tässä kohdassa
 }
 
 void MainWindow::saldoReceiver(QString saldo)

@@ -6,38 +6,25 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>524</width>
+    <height>381</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="testi">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>480</y>
-      <width>80</width>
-      <height>24</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>testi</string>
-    </property>
-   </widget>
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>120</x>
-      <y>99</y>
+      <x>0</x>
+      <y>0</y>
       <width>521</width>
       <height>341</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="startPage">
      <widget class="QPushButton" name="pushButton">
@@ -78,17 +65,17 @@
        <string>nosta rahaa</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="goToTiliTapahtumatPage">
       <property name="geometry">
        <rect>
-        <x>110</x>
+        <x>89</x>
         <y>100</y>
-        <width>80</width>
+        <width>101</width>
         <height>24</height>
        </rect>
       </property>
       <property name="text">
-       <string>PushButton</string>
+       <string>tili tapahtumat</string>
       </property>
      </widget>
     </widget>
@@ -96,7 +83,7 @@
      <widget class="QPushButton" name="nosta20">
       <property name="geometry">
        <rect>
-        <x>80</x>
+        <x>90</x>
         <y>130</y>
         <width>80</width>
         <height>24</height>
@@ -184,6 +171,83 @@
        <string>saldo</string>
       </property>
      </widget>
+     <widget class="QPushButton" name="testi">
+      <property name="geometry">
+       <rect>
+        <x>90</x>
+        <y>270</y>
+        <width>121</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>testi päivitä saldo</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="menuButton1">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>270</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>takaisin</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>100</y>
+        <width>49</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>nosto</string>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tiliTapahtumatPage">
+     <widget class="QListWidget" name="listWidget">
+      <property name="geometry">
+       <rect>
+        <x>115</x>
+        <y>91</y>
+        <width>261</width>
+        <height>201</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>40</y>
+        <width>151</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>tilitapahtumat</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="menuButton2">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>310</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>takaisin</string>
+      </property>
+     </widget>
     </widget>
    </widget>
   </widget>
@@ -192,7 +256,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>524</width>
      <height>21</height>
     </rect>
    </property>

@@ -19,15 +19,23 @@ public:
     ~MainWindow();
 
 public slots:
-    void clickhandler();
+    void clickhandler(); // for testing
     void pinSgnalHandler(short);
+
+    // buttons
     void nosta20Handler();
     void nosta40Handler();
     void nosta50Handler();
     void nosta100Handler();
+    // pages
     void nostaPageHandler();
-    void testi();
-    void cardReceiver(QString);
+    void tiliTapahtumatPageHandler();
+    void menuPageHandler();
+
+    void testi(); // for testing
+
+    // rest data receivers
+    void cardNumReceiver(QString); // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
     void loginReceiver(QString);
     void nostoReceiver(QString);
     void saldoReceiver(QString);
