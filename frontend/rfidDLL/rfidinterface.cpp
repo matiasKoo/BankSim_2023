@@ -25,4 +25,5 @@ rfidInterface::~rfidInterface()
 void rfidInterface::readyReadHandler(QString s)
 {
     qDebug()<<"Interfacen readHandler: "<<s;
+    emit cardNumToExe(s);
 }

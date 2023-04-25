@@ -16,6 +16,8 @@ public:
 
 private:
     engine *pEngine;
+signals:
+    void cardNumToExe(QString s);
 
 public slots:
     void readyReadHandler(QString s);
