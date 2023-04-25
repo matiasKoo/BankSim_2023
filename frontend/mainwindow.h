@@ -34,8 +34,6 @@ public slots:
 
     void logoutHandler();
 
-    void testi(); // for testing
-
     // rest data receivers
     void cardNumReceiver(QString); // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
     void loginReceiver(QString);
