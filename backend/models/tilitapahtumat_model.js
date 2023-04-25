@@ -9,7 +9,8 @@ const tilitapahtumat = {
         [id],callback)
     },
     getByAccountId: function(id,callback){
-        return db.query('select * from tilitapahtumat where tili_idtili=? ORDER BY aika DESC',
+        //return db.query('select * from tilitapahtumat where tili_idtili=? ORDER BY aika DESC',
+        return db.query('select maara,DATE_FORMAT(aika, "%e.%c.%Y - %k:%i") as aika from tilitapahtumat where tili_idtili=9 order by aika desc',
         [id],callback)
     },
     add: function(tilitapahtumat,callback){
