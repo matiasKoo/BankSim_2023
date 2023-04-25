@@ -9,7 +9,7 @@ const tilitapahtumat = {
         [id],callback)
     },
     getByAccountId: function(id,callback){
-        return db.query('select * from tilitapahtumat where tili_idtili=?',
+        return db.query('select * from tilitapahtumat where tili_idtili=? ORDER BY aika DESC',
         [id],callback)
     },
     add: function(tilitapahtumat,callback){
