@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->pushButton,SIGNAL(clicked(bool)),
             this,SLOT(clickhandler()));
 
+    // pinnin vastaanotto
     connect(pinUI,SIGNAL(sendPin(short)),
             this,SLOT(pinSgnalHandler(short)));
 
@@ -37,6 +38,9 @@ MainWindow::MainWindow(QWidget *parent)
             this,SLOT(menuPageHandler()));
     connect(ui->menuButton2,SIGNAL(clicked(bool)),
             this,SLOT(menuPageHandler()));
+
+    connect(ui->logoutButton,SIGNAL(clicked(bool)),
+            this,SLOT(logoutHandler()));
 
 
     //nosto connections
@@ -132,6 +136,17 @@ void MainWindow::menuPageHandler()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+void MainWindow::logoutHandler()
+{
+    delete RestDLL;
+    RestDLL = new RESTAPIDLL(this);
+    qDebug()<<"EXE: logout";
+    state = 1;
+    pinAttempts = 0;
+    ui->stackedWidget->setCurrentIndex(0);
+
+}
+
 
 void MainWindow::testi()
 {
@@ -165,12 +180,15 @@ void MainWindow::loginReceiver(QString response)
 
 void MainWindow::nostoReceiver(QString responce)
 {
-    qDebug()<<"get saldo"<<responce;
+    if(responce == 1){
+        qDebug()<<"EXE: nosto onistui";
+    }
     RestDLL->getSaldo(); // restdll ei lähetä pyyntöä serverille tässä kohdassa
 }
 
 void MainWindow::saldoReceiver(QString saldo)
 {
+    qDebug()<<"got saldo"<<saldo;
     ui->saldoLine->setText(saldo);
 }
 

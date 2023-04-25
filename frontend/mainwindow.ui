@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="startPage">
      <widget class="QPushButton" name="pushButton">
@@ -76,6 +76,19 @@
       </property>
       <property name="text">
        <string>tili tapahtumat</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="logoutButton">
+      <property name="geometry">
+       <rect>
+        <x>330</x>
+        <y>210</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>kirjaudu ulos</string>
       </property>
      </widget>
     </widget>

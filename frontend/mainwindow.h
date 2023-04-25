@@ -32,6 +32,8 @@ public slots:
     void tiliTapahtumatPageHandler();
     void menuPageHandler();
 
+    void logoutHandler();
+
     void testi(); // for testing
 
     // rest data receivers
