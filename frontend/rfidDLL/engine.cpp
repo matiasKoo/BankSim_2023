@@ -49,9 +49,7 @@ void engine::readyReadHandler()
     cardString = "";
     QByteArray data = serialPort->readAll();
     cardString = QString(data);
-    qDebug()<<cardString;
     cardString.remove(0,2);
     cardString.remove(11,15);
-    qDebug()<<cardString;
     emit cardNumberToInterface(cardString);
 }
