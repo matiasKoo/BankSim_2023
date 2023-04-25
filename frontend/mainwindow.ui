@@ -24,14 +24,14 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="startPage">
      <widget class="QPushButton" name="pushButton">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>40</y>
+        <x>280</x>
+        <y>290</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -43,11 +43,45 @@
      <widget class="QLineEdit" name="cardNumLineEdit">
       <property name="geometry">
        <rect>
-        <x>250</x>
-        <y>50</y>
+        <x>380</x>
+        <y>290</y>
         <width>113</width>
         <height>24</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>270</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>korttinumero</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="startPageinfo">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>60</y>
+        <width>171</width>
+        <height>61</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>15</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>lue kortti laiteella</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </widget>
@@ -55,8 +89,8 @@
      <widget class="QPushButton" name="goToNostaPage">
       <property name="geometry">
        <rect>
-        <x>320</x>
-        <y>100</y>
+        <x>310</x>
+        <y>130</y>
         <width>80</width>
         <height>24</height>
        </rect>
@@ -68,14 +102,40 @@
      <widget class="QPushButton" name="goToTiliTapahtumatPage">
       <property name="geometry">
        <rect>
-        <x>89</x>
-        <y>100</y>
+        <x>100</x>
+        <y>130</y>
         <width>101</width>
         <height>24</height>
        </rect>
       </property>
       <property name="text">
        <string>tili tapahtumat</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="logoutButton">
+      <property name="geometry">
+       <rect>
+        <x>320</x>
+        <y>260</y>
+        <width>80</width>
+        <height>24</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>kirjaudu ulos</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="nostoMessage">
+      <property name="geometry">
+       <rect>
+        <x>178</x>
+        <y>60</y>
+        <width>171</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
@@ -171,19 +231,6 @@
        <string>saldo</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="testi">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>270</y>
-        <width>121</width>
-        <height>24</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>testi päivitä saldo</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="menuButton1">
       <property name="geometry">
        <rect>
@@ -257,7 +304,7 @@
      <x>0</x>
      <y>0</y>
      <width>524</width>
-     <height>25</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

@@ -17,15 +17,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(cardNum(QString)),
             RestDLL,SLOT(receiveCardNumber(QString)));
 
-
+    //rfid ohitus testauksessa
     connect(ui->pushButton,SIGNAL(clicked(bool)),
             this,SLOT(clickhandler()));
 
+    // pinnin vastaanotto
     connect(pinUI,SIGNAL(sendPin(short)),
             this,SLOT(pinSgnalHandler(short)));
 
-    connect(ui->testi,SIGNAL(clicked(bool)),
-            this,SLOT(testi()));
 
     // navigation
 
@@ -37,6 +36,9 @@ MainWindow::MainWindow(QWidget *parent)
             this,SLOT(menuPageHandler()));
     connect(ui->menuButton2,SIGNAL(clicked(bool)),
             this,SLOT(menuPageHandler()));
+
+    connect(ui->logoutButton,SIGNAL(clicked(bool)),
+            this,SLOT(logoutHandler()));
 
 
     //nosto connections
@@ -66,7 +68,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(rfid,SIGNAL(cardNumToExe(QString)),
             this,SLOT(cardNumReceiver(QString)));
 
-    // tänne readyread??
     state = 1;
     ui->stackedWidget->setCurrentIndex(0);
 
@@ -123,12 +124,14 @@ void MainWindow::nosta100Handler()
 void MainWindow::nostaPageHandler()
 {
     ui->stackedWidget->setCurrentIndex(2);
+    ui->nostoMessage->setText("");
     RestDLL->getSaldo();
 }
 
 void MainWindow::tiliTapahtumatPageHandler()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    ui->nostoMessage->setText("");
     //hae tapahtumat listaan
     RestDLL->getTransactions();
 
@@ -139,11 +142,16 @@ void MainWindow::menuPageHandler()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
-
-void MainWindow::testi()
+void MainWindow::logoutHandler()
 {
-    //RestDLL->GetCardInfo();
-    RestDLL->getSaldo();
+    delete RestDLL;
+    RestDLL = new RESTAPIDLL(this);
+    qDebug()<<"EXE: logout";
+    ui->nostoMessage->setText("");
+    state = 1;
+    pinAttempts = 0;
+    ui->stackedWidget->setCurrentIndex(0);
+
 }
 
 void MainWindow::cardNumReceiver(QString responce)
@@ -172,12 +180,21 @@ void MainWindow::loginReceiver(QString response)
 
 void MainWindow::nostoReceiver(QString responce)
 {
-    qDebug()<<"get saldo"<<responce;
-    RestDLL->getSaldo(); // restdll ei lähetä pyyntöä serverille tässä kohdassa
+    if(responce == "1"){
+        qDebug()<<"EXE: nosto onistui";
+        ui->nostoMessage->setText("nosto onistui");
+        ui->stackedWidget->setCurrentIndex(1);
+    }else{
+        qDebug()<<"EXE: nosto epäonistui";
+        ui->nostoMessage->setText("nosto epäonistui");
+        ui->stackedWidget->setCurrentIndex(1);
+    }
+
 }
 
 void MainWindow::saldoReceiver(QString saldo)
 {
+    qDebug()<<"got saldo"<<saldo;
     ui->saldoLine->setText(saldo);
 }
 

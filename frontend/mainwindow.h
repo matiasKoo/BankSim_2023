@@ -32,7 +32,7 @@ public slots:
     void tiliTapahtumatPageHandler();
     void menuPageHandler();
 
-    void testi(); // for testing
+    void logoutHandler();
 
     // rest data receivers
     void cardNumReceiver(QString); // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
