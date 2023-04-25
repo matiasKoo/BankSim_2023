@@ -64,6 +64,8 @@ MainWindow::MainWindow(QWidget *parent)
             this,SLOT(nostoReceiver(QString)));
 
     //connection korttinumeron vastaan otolle
+    connect(rfid,SIGNAL(cardNumToExe(QString)),
+            this,SLOT(cardNumReceiver(QString)));
 
     // tänne readyread??
     state = 1;
