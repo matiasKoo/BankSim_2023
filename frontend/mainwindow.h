@@ -39,6 +39,7 @@ public slots:
     void loginReceiver(QString);
     void nostoReceiver(QString);
     void saldoReceiver(QString);
+    void transactionsReceiver(QStringList);
 
 
 signals:
