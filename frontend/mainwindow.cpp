@@ -63,6 +63,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(RestDLL,SIGNAL(sendNosto(QString)),
             this,SLOT(nostoReceiver(QString)));
 
+    connect(RestDLL,SIGNAL(sendTransactions(QStringList)),
+            this,SLOT(transactionsReceiver(QStringList)));
+
     //connection korttinumeron vastaan otolle
     connect(rfid,SIGNAL(cardNumToExe(QString)),
             this,SLOT(cardNumReceiver(QString)));
@@ -131,6 +134,8 @@ void MainWindow::tiliTapahtumatPageHandler()
 {
     ui->stackedWidget->setCurrentIndex(3);
     //hae tapahtumat listaan
+    RestDLL->getTransactions();
+
 }
 
 void MainWindow::menuPageHandler()
@@ -192,5 +197,16 @@ void MainWindow::saldoReceiver(QString saldo)
 {
     qDebug()<<"got saldo"<<saldo;
     ui->saldoLine->setText(saldo);
+}
+
+void MainWindow::transactionsReceiver(QStringList n)
+{
+    QStringListModel * model;
+    model = new QStringListModel(this);
+
+    QStringList transactionsList = n;
+    qDebug()<<n;
+    model->setStringList(transactionsList);
+    ui->listView->setModel(model);
 }
 

@@ -40,9 +40,6 @@ void RESTAPIDLL::loginSlot(QNetworkReply *reply)
     {
         qDebug()<<"Login FAILED";
         emit sendLogin("false");
-
-        reply->deleteLater();
-        accessManager->deleteLater();
     }
 }
 
@@ -94,17 +91,17 @@ void RESTAPIDLL::getTransactionsSlot(QNetworkReply *reply)
 
     QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
     QJsonArray json_array = json_doc.array();
+
     foreach (const QJsonValue &value, json_array) {
         QJsonObject json_obj = value.toObject();
         QString aika = json_obj["aika"].toString();
         QString maara = QString::number(json_obj["maara"].toInt());
-        tilitapahtumat = "Aika: "+aika+" | Määrä: "+maara;
+        tilitapahtumat = "Maara: "+maara+" | Aika: "+aika;
         list<<tilitapahtumat;
-        qDebug()<<list;
-        emit sendTransactions(list);
-
     }
-
+    qDebug()<<list;
+    emit sendTransactions(list);
+    list.clear();
     reply->deleteLater();
     accessManager->deleteLater();
 }
@@ -127,7 +124,13 @@ void RESTAPIDLL::nostaSlot(QNetworkReply *reply)
 {
     response_data=reply->readAll();
     qDebug()<<response_data;
-    if(QString::compare(response_data, "0")!=0 && QString::compare(response_data, "Unauthorized")!=0)
+
+    QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
+    QJsonObject json_obj = json_doc.object();
+    QString code=json_obj["code"].toString();
+    qDebug()<<code;
+
+    if(QString::compare(code, "ER_SIGNAL_EXCEPTION")!=0 && QString::compare(response_data, "Unauthorized")!=0)
     {
         qDebug()<<"Nosto successful";
         emit sendNosto("1");
@@ -138,11 +141,7 @@ void RESTAPIDLL::nostaSlot(QNetworkReply *reply)
     {
         qDebug()<<"Nosto failed";
         emit sendNosto("0");
-
-        reply->deleteLater();
-        accessManager->deleteLater();
     }
-
 }
 
 void RESTAPIDLL::Login()
@@ -151,6 +150,8 @@ void RESTAPIDLL::Login()
     QJsonObject jsonObj;
     jsonObj.insert("korttinumero",cardNumber);
     jsonObj.insert("PIN",pinNumber);
+
+    qDebug()<<cardNumber<<"  "<<pinNumber;
     QString site_url = Environment::getBaseUrl()+"/login/";
     QNetworkRequest request((site_url));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
@@ -160,6 +161,7 @@ void RESTAPIDLL::Login()
             this, SLOT(loginSlot(QNetworkReply*)));
 
     reply = accessManager->post(request, QJsonDocument(jsonObj).toJson());
+    qDebug()<<reply;
 }
 
 void RESTAPIDLL::getCardInfo()
