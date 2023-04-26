@@ -23,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     // pinnin vastaanotto
     connect(pinUI,SIGNAL(sendPin(short)),
-            this,SLOT(pinSgnalHandler(short)));
+            this,SLOT(pinSignalHandler(short)));
 
 
     // navigation
@@ -86,7 +86,7 @@ void MainWindow::clickhandler()
     pinUI->exec();
 }
 
-void MainWindow::pinSgnalHandler(short pin)
+void MainWindow::pinSignalHandler(short pin)
 {
     if(state == 2 && pinAttempts < 3){
         emit pinNum(QString::number(pin));
@@ -145,7 +145,34 @@ void MainWindow::menuPageHandler()
 void MainWindow::logoutHandler()
 {
     delete RestDLL;
+    delete rfid;
     RestDLL = new RESTAPIDLL(this);
+    rfid = new rfidInterface(this);
+
+    // rest login tiedot lähetys
+    connect(this,SIGNAL(pinNum(QString)),
+            RestDLL,SLOT(receivePinNumber(QString)));
+
+    connect(this,SIGNAL(cardNum(QString)),
+            RestDLL,SLOT(receiveCardNumber(QString)));
+
+    //receiver connections
+    connect(RestDLL,SIGNAL(sendLogin(QString)),
+            this,SLOT(loginReceiver(QString)));
+
+    connect(RestDLL,SIGNAL(sendSaldo(QString)),
+            this,SLOT(saldoReceiver(QString)));
+
+    connect(RestDLL,SIGNAL(sendNosto(QString)),
+            this,SLOT(nostoReceiver(QString)));
+
+    connect(RestDLL,SIGNAL(sendTransactions(QStringList)),
+            this,SLOT(transactionsReceiver(QStringList)));
+
+    //connection korttinumeron vastaan otolle
+    connect(rfid,SIGNAL(cardNumToExe(QString)),
+            this,SLOT(cardNumReceiver(QString)));
+
     qDebug()<<"EXE: logout";
     ui->nostoMessage->setText("");
     state = 1;
@@ -155,7 +182,7 @@ void MainWindow::logoutHandler()
 }
 
 void MainWindow::cardNumReceiver(QString responce)
-{   // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
+{
     if(state == 1){
         qDebug()<<"EXE: rfid korttinumero saatu: "<<responce;
         emit cardNum(responce);

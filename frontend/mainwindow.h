@@ -20,7 +20,7 @@ public:
 
 public slots:
     void clickhandler(); // for testing
-    void pinSgnalHandler(short);
+    void pinSignalHandler(short);
 
     // buttons
     void nosta20Handler();
@@ -34,8 +34,8 @@ public slots:
 
     void logoutHandler();
 
-    // rest data receivers
-    void cardNumReceiver(QString); // tähän slottiin pitäisi yhdistää signal jonka mukana tulee korttinumero
+    // data receivers
+    void cardNumReceiver(QString);
     void loginReceiver(QString);
     void nostoReceiver(QString);
     void saldoReceiver(QString);
