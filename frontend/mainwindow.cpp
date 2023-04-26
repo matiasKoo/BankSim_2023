@@ -17,10 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(this,SIGNAL(cardNum(QString)),
             RestDLL,SLOT(receiveCardNumber(QString)));
 
-    //rfid ohitus testauksessa
-    connect(ui->pushButton,SIGNAL(clicked(bool)),
-            this,SLOT(clickhandler()));
-
     // pinnin vastaanotto
     connect(pinUI,SIGNAL(sendPin(short)),
             this,SLOT(pinSignalHandler(short)));
@@ -76,14 +72,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::clickhandler()
-{
-    emit cardNum(ui->cardNumLineEdit->text());
-    pinUI->displayText("Syötä PIN");
-    state = 2;
-    pinUI->exec();
 }
 
 void MainWindow::pinSignalHandler(short pin)

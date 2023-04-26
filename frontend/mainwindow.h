@@ -19,7 +19,6 @@ public:
     ~MainWindow();
 
 public slots:
-    void clickhandler(); // for testing
     void pinSignalHandler(short);
 
     // buttons
