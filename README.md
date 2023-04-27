@@ -1,4 +1,4 @@
-#BankSimul
+# BankSimul
 
 This project was a part of the OAMK Software Developement Course IN00CS90
 
