@@ -16,14 +16,16 @@ The aim of this project was to create an ATM simulator software, and a REST API 
 
 
 Below are examples of diagrams drawn while planning the software:
+
+
 <img src="readme_deploymentdiagram.png">
-The deployment diagram shows used appliances.
+_The deployment diagram shows used appliances._
 
 <img src="readme_erdiagram.png">
-The ER-diagram describes the structure of the database. This database consists of four tables.
+_The ER-diagram describes the structure of the database. This database consists of four tables._
 
 <img src="readme_uidiagram.png">
-The UI-diagram describes how the UI works when used.
+_The UI-diagram describes how the UI works when used._
 
 Built with:
 
