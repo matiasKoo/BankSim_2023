@@ -14,6 +14,12 @@ The aim of this project was to create an ATM simulator software, and a REST API 
 
 -Technical description
 
+
+Below are examples of diagrams drawn while planning the software:
+<img src="readme_deploymentdiagram.png">
+<img src="readme_erdiagram.png">
+<img src="readme_uidiagram.png">
+
 Built with:
 
 -mySQL - databse
