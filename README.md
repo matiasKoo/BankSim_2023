@@ -19,7 +19,7 @@ Below are examples of diagrams drawn while planning the software:
 
 
 <img src="readme_deploymentdiagram.png">
-_The deployment diagram shows used appliances._
+*The deployment diagram shows used appliances.*
 
 <img src="readme_erdiagram.png">
 _The ER-diagram describes the structure of the database. This database consists of four tables._
