@@ -34,3 +34,13 @@ Built with:
 -Express.js - REST API
 
 -Qt - software and GUI
+
+Authors:
+
+Matias Karjalainen, https://github.com/matiasKoo
+
+Juuso Korpinen, https://github.com/JuusoKorpinen
+
+Jere Kemppainen, https://github.com/jerkemp
+
+Aatu Lintulahti, https://github.com/AatuLintulahti
